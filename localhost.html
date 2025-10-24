@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TyphoonFincon - Localhost Ready!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <div class="mb-6">
+            <div class="text-6xl mb-4">🚀</div>
+            <h1 class="text-3xl font-bold text-blue-800 mb-2">TyphoonFincon</h1>
+            <p class="text-gray-600">Your localhost is ready!</p>
+        </div>
+        
+        <div class="space-y-4 mb-6">
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">🌐 Localhost URLs</h3>
+                <div class="text-left space-y-2">
+                    <div class="text-sm">
+                        <strong>Main App:</strong><br>
+                        <code class="bg-gray-200 px-2 py-1 rounded">http://localhost:5173</code>
+                    </div>
+                    <div class="text-sm">
+                        <strong>Alternative:</strong><br>
+                        <code class="bg-gray-200 px-2 py-1 rounded">http://127.0.0.1:5173</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">📋 Available Pages</h3>
+                <div class="text-left space-y-1 text-sm">
+                    <div>• <strong>Home:</strong> / (Landing page)</div>
+                    <div>• <strong>Customer:</strong> /customer (Loan application)</div>
+                    <div>• <strong>Connector:</strong> /connector (Partner registration)</div>
+                    <div>• <strong>Admin:</strong> /admin (Admin login)</div>
+                </div>
+            </div>
+            
+            <div class="bg-amber-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-amber-800 mb-2">🔑 Admin Login</h3>
+                <div class="text-left space-y-1 text-sm">
+                    <div><strong>Username:</strong> admin</div>
+                    <div><strong>Password:</strong> typhoon2025</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="space-y-2">
+            <button onclick="openLocalhost()" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                🌐 Open Localhost
+            </button>
+            <button onclick="showInstructions()" class="w-full bg-gray-200 text-gray-800 py-2 px-6 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                📖 Show Instructions
+            </button>
+        </div>
+        
+        <div id="instructions" class="hidden mt-6 text-left text-sm text-gray-600">
+            <h4 class="font-semibold mb-2">🚀 How to Start:</h4>
+            <ol class="list-decimal list-inside space-y-1">
+                <li>Open a new terminal/command prompt</li>
+                <li>Navigate to your project folder</li>
+                <li>Run: <code class="bg-gray-200 px-1 rounded">npm run dev</code></li>
+                <li>Open browser to <code class="bg-gray-200 px-1 rounded">http://localhost:5173</code></li>
+            </ol>
+            <div class="mt-4 p-3 bg-red-50 rounded">
+                <strong>⚠️ Note:</strong> You need Node.js 18+ for Vite. Your current version is 17.6.0. Consider updating Node.js or use the build version.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openLocalhost() {
+            window.open('http://localhost:5173', '_blank');
+        }
+        
+        function showInstructions() {
+            const instructions = document.getElementById('instructions');
+            instructions.classList.toggle('hidden');
+        }
+        
+        // Auto-detect if localhost is running
+        fetch('http://localhost:5173')
+            .then(response => {
+                if (response.ok) {
+                    document.querySelector('.bg-green-50').innerHTML += '<div class="mt-2 text-green-700 text-sm">✅ Server is running!</div>';
+                }
+            })
+            .catch(() => {
+                document.querySelector('.bg-green-50').innerHTML += '<div class="mt-2 text-red-700 text-sm">❌ Server not running</div>';
+            });
+    </script>
+</body>
+</html>
+
